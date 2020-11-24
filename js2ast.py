@@ -5,6 +5,9 @@ import json
 esprima = js2py.require('esprima')
 escodegen = js2py.require('escodegen')
 
+w1 = open('list_AST.json', 'a')
+w2 = open('dict_AST.json', 'a')
+
 def extractAST(dic, dic_list, flag):
     new_dic = {}
     new_key_list = []
@@ -49,7 +52,7 @@ def extractAST(dic, dic_list, flag):
         key_list = []
         for key in dic.keys():
             key_list.append(key)
-        print(key_list)
+        # print(key_list)
         for key,value in dic.items():
             if key == 'type':
                 new_dic['id'] = flag
@@ -68,6 +71,10 @@ src = f.read()
 tree = esprima.parse(src)
 print(tree)
 tree_dict = tree.to_dict()
+AST_dict_Json = json.dumps(tree_dict)
+w2.write(AST_dict_Json)
+w2.write('\n')
+w2.close()
 # print(type(tree_dict))
 # print(escodegen.generate(tree_dict))
 
@@ -76,3 +83,7 @@ flag = 0
 dic, final_list, flag = extractAST(tree_dict, ast_dic, flag)
 AST_list = sorted(final_list, key=lambda e: e.__getitem__('id'), reverse=False)
 print(AST_list)
+AST_list_Json = json.dumps(AST_list)
+w1.write(AST_list_Json)
+w1.write('\n')
+w1.close()
