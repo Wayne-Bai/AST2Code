@@ -58,7 +58,7 @@ def extractAST(dic, dic_list, flag):
                 new_dic['id'] = flag
                 new_dic['type'] = value
                 flag += 1
-            if key == 'raw' or key == 'name' or key == 'kind':
+            if key == 'value' or key == 'name' or key == 'kind':
                 new_dic['value'] = value
         dic_list.append(new_dic)
         return new_dic, dic_list, flag
