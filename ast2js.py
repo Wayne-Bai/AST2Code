@@ -82,5 +82,5 @@ for line in f.readlines():
         else:
             first_AST = convertAST(dics[i])
             whole_AST = first_AST
-    print(whole_AST)
+    # print(whole_AST)
     print(escodegen.generate(whole_AST))
